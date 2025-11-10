@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Green Leaf Agro Sciences</title>
+  <meta name="description" content="Green Leaf Agro Sciences — cultivating nature through science. Sustainable crop solutions, R&D, and farmer support." />
+  <style>
+    /* =========  VARIABLES  ========= */
+    :root{
+      --primary:#006A3A;      /* deep agro green */
+      --accent:#38A169;       /* leaf green */
+      --sand:#F6F1E6;         /* warm beige */
+      --muted:#6B7280;        /* neutral gray */
+      --white:#ffffff;
+      --max-width:1100px;
+      --radius:12px;
+      --glass: rgba(255,255,255,0.85);
+      --shadow: 0 8px 24px rgba(6, 10, 15, 0.08);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    /* =========  RESET  ========= */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:#0f172a;
+      background: linear-gradient(180deg,var(--sand) 0%, #fff 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* =========  LAYOUT  ========= */
+    .container{max-width:var(--max-width); margin:0 auto; padding:0 20px;}
+
+    header{
+      backdrop-filter: blur(6px);
+      position:sticky; top:0; z-index:50;
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.7));
+      border-bottom:1px solid rgba(6,10,15,0.04);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:14px 0;
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand img{height:44px; width:auto}
+    .brand h1{font-size:18px; margin:0; color:var(--primary); letter-spacing:0.2px}
+    nav ul{display:flex; gap:18px; list-style:none; margin:0; padding:0; align-items:center}
+    nav li a{font-weight:600; color: #123; font-size:15px}
+    .btn{display:inline-block; padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer}
+    .btn-primary{background:var(--primary); color:var(--white); box-shadow: 0 6px 18px rgba(6,106,58,0.18)}
+    .btn-ghost{border:1px solid rgba(6,10,15,0.06); background:transparent}
+
+    /* Mobile nav */
+    .hamburger{display:none; cursor:pointer; background:transparent; border:none; padding:8px; border-radius:8px}
+    .hamburger svg{width:22px;height:22px}
+    .mobile-menu{display:none; padding:12px 0}
+    .mobile-menu a{display:block; padding:8px 0; font-weight:600}
+
+    /* =========  HERO  ========= */
+    .hero{
+      padding:48px 0 56px;
+      display:grid; gap:28px; align-items:center;
+      grid-template-columns: 1fr 420px;
+    }
+    .hero-left h2{font-size:34px; margin:0 0 12px; color: #072018}
+    .hero-left p{margin:0 0 18px; color:var(--muted); max-width:60ch}
+    .hero-ctas{display:flex; gap:12px; align-items:center}
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,250,0.9));
+      padding:18px; border-radius:14px; box-shadow:var(--shadow);
+    }
+    .stat{display:flex; gap:12px; align-items:center; margin-bottom:10px}
+    .stat strong{font-size:20px; color:var(--primary)}
+    .stat span{color:var(--muted)}
+
+    /* =========  SECTIONS  ========= */
+    section{padding:36px 0}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .card{background:var(--white); border-radius:10px; padding:18px; box-shadow:0 6px 18px rgba(11,13,15,0.04)}
+    .card h3{margin:0 0 8px}
+    .product-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .product{border-radius:10px; overflow:hidden; background:linear-gradient(180deg,#fff,#fbfff8); border:1px solid rgba(6,10,15,0.03)}
+    .product .meta{padding:14px}
+    .kpi{display:flex; gap:12px; margin-top:12px}
+
+    /* =========  CASE STUDY (carousel) ========= */
+    .carousel{position:relative; overflow:hidden; border-radius:14px}
+    .slides{display:flex; transition:transform .5s ease}
+    .slide{min-width:100%; padding:28px; box-sizing:border-box; display:flex; gap:20px; align-items:center}
+    .slide .img{flex:0 0 240px; height:150px; border-radius:10px; background: linear-gradient(135deg,var(--accent),var(--primary))}
+    .carousel .controls{position:absolute; top:50%; transform:translateY(-50%); right:12px; display:flex; gap:8px}
+    .dotwrap{display:flex; gap:6px; justify-content:center; padding-top:12px}
+
+    /* =========  CONTACT  ========= */
+    .contact-grid{display:grid; grid-template-columns:1fr 360px; gap:20px}
+    form input, form textarea{width:100%; padding:10px 12px; margin-bottom:10px; border-radius:8px; border:1px solid rgba(6,10,15,0.06)}
+    form button{width:100%}
+
+    /* =========  FOOTER  ========= */
+    footer{padding:28px 0; border-top:1px solid rgba(6,10,15,0.04); background:transparent; color:var(--muted)}
+    .footer-grid{display:grid; grid-template-columns: 1fr 1fr; gap:18px; align-items:start}
+
+    /* =========  RESPONSIVE  ========= */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr; padding:28px 0 36px}
+      nav ul{display:none}
+      .hamburger{display:inline-block}
+      .mobile-menu{display:block}
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+      .product-grid{grid-template-columns:repeat(2,1fr)}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      .grid-3{grid-template-columns:1fr}
+      .product-grid{grid-template-columns:1fr}
+      .brand h1{font-size:15px}
+      .hero-left h2{font-size:26px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <!-- Change src to your logo path if needed -->
+        <img src="/mnt/data/d788cdfe-be1e-4e79-9285-3b983d8a3602.png" alt="Green Leaf Agro Sciences logo" />
+        <div>
+          <h1>Green Leaf Agro Sciences</h1>
+          <div style="font-size:12px; color:var(--muted);">Cultivating Nature Through Science</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#rnd">R&D</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div style="display:flex; gap:10px; align-items:center">
+        <a class="btn btn-ghost" href="#contact">Talk to an Agronomist</a>
+        <button class="hamburger" aria-label="Open menu" id="hambtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="container mobile-menu" id="mobileMenu" style="display:none">
+      <a href="#home">Home</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#rnd">R&amp;D</a>
+      <a href="#resources">Resources</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main class="container" id="home" role="main">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-left">
+        <h2 id="hero-heading">Cultivating Nature Through Science</h2>
+        <p>Green Leaf Agro Sciences delivers science-backed agricultural solutions that increase yield, protect soil health, and empower farmers with practical, sustainable technology.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#contact">Request a Free Sample</a>
+          <a class="btn" href="#solutions">Explore Solutions</a>
+        </div>
+
+        <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+          <div class="card" style="display:flex; gap:12px; align-items:center;">
+            <div style="width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--primary));"></div>
+            <div>
+              <div style="font-weight:700">Field-proven results</div>
+              <div style="color:var(--muted); font-size:13px">Average +18% yield in trials</div>
+            </div>
+          </div>
+          <div class="card" style="display:flex; gap:12px; align-items:center;">
+            <div style="width:48px;height:48px;border-radius:10px;background:#E7F9EE;display:flex;align-items:center;justify-content:center;color:var(--primary);font-weight:800">R</div>
+            <div>
+              <div style="font-weight:700">Research-led</div>
+              <div style="color:var(--muted); font-size:13px">In-house agronomy & lab validation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Quick contact">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px">
+          <div style="font-weight:700">Request Sample</div>
+          <div style="font-size:13px; color:var(--muted)">No cost, limited availability</div>
+        </div>
+        <form id="sampleForm" onsubmit="event.preventDefault(); alert('Sample requested — replace with real integration');">
+          <input type="text" name="name" placeholder="Full name" required style="width:100%; padding:10px; margin-bottom:8px; border-radius:8px; border:1px solid rgba(6,10,15,0.06)">
+          <input type="tel" name="phone" placeholder="Phone" required style="width:100%; padding:10px; margin-bottom:8px; border-radius:8px; border:1px solid rgba(6,10,15,0.06)">
+          <input type="email" name="email" placeholder="Email" required style="width:100%; padding:10px; margin-bottom:8px; border-radius:8px; border:1px solid rgba(6,10,15,0.06)">
+          <button class="btn btn-primary" type="submit">Request Sample</button>
+        </form>
+
+        <div style="margin-top:12px; color:var(--muted); font-size:13px">Or call us: <strong>+91 98765 43210</strong></div>
+      </aside>
+    </section>
+
+    <!-- SOLUTIONS -->
+    <section id="solutions" aria-labelledby="solutionsTitle">
+      <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:14px">
+        <h2 id="solutionsTitle">Our Solutions</h2>
+        <a href="#products" style="font-size:14px; color:var(--muted)">View product catalog →</a>
+      </div>
+
+      <div class="product-grid" aria-hidden="false">
+        <article class="product">
+          <div style="height:160px; background:linear-gradient(135deg,#E6F8EE,#F3FFF6); display:flex; align-items:center; justify-content:center;"> 
+            <img src="" alt="" aria-hidden="true" style="opacity:0.2; width:140px" />
+            <div style="position:absolute; font-weight:800; color:var(--primary); font-size:22px">Foliar Boost</div>
+          </div>
+          <div class="meta">
+            <h3>Foliar Boost</h3>
+            <p style="color:var(--muted); margin:6px 0 12px">A bioactive foliar feed that improves nutrient uptake and vigor across a broad range of crops.</p>
+            <div class="kpi">
+              <div style="font-weight:700">+12% yield</div>
+              <div style="color:var(--muted)">Safe for crops</div>
+            </div>
+            <div style="margin-top:12px">
+              <a class="btn btn-ghost" href="#">Learn more</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div style="height:160px; background:linear-gradient(135deg,#FFF6E8,#F9FFF4); display:flex; align-items:center; justify-content:center;">
+            <div style="position:absolute; font-weight:800; color:#B56F00; font-size:22px">Soil Restore</div>
+          </div>
+          <div class="meta">
+            <h3>Soil Restore</h3>
+            <p style="color:var(--muted); margin:6px 0 12px">Microbial soil amendment designed to improve structure and nutrient cycling for long-term health.</p>
+            <div class="kpi">
+              <div style="font-weight:700">Improves porosity</div>
+              <div style="color:var(--muted)">Long-term benefit</div>
+            </div>
+            <div style="margin-top:12px"><a class="btn btn-ghost" href="#">Learn more</a></div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div style="height:160px; background:linear-gradient(135deg,#EAF6FF,#F7FFF9); display:flex; align-items:center; justify-content:center;">
+            <div style="position:absolute; font-weight:800; color:#005E9E; font-size:22px">Pest Shield</div>
+          </div>
+          <div class="meta">
+            <h3>Pest Shield</h3>
+            <p style="color:var(--muted); margin:6px 0 12px">Botanical-based protection that reduces pest pressure with minimal environmental impact.</p>
+            <div class="kpi">
+              <div style="font-weight:700">Low residue</div>
+              <div style="color:var(--muted)">EPA-friendly formulation</div>
+            </div>
+            <div style="margin-top:12px"><a class="btn btn-ghost" href="#">Learn more</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- R&D -->
+    <section id="rnd">
+      <h2>R&amp;D — Field to Lab</h2>
+      <p style="color:var(--muted); max-width:60ch">Our research program combines controlled-environment lab work with multi-season field trials. We publish technical briefs and make trial data available to partners.</p>
+
+      <div style="margin-top:18px" class="carousel" aria-roledescription="carousel" aria-label="Case studies">
+        <div class="slides" id="slides">
+          <div class="slide">
+            <div class="img" aria-hidden="true"></div>
+            <div>
+              <h3>Case Study: Maize Yield Trial</h3>
+              <p style="color:var(--muted)">A randomized trial across 14 locations showed consistent yield benefits under both rainfed and irrigated conditions.</p>
+              <div style="margin-top:8px"><a class="btn btn-primary" href="#">Download report (PDF)</a></div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="img" aria-hidden="true"></div>
+            <div>
+              <h3>Soil Health Monitoring</h3>
+              <p style="color:var(--muted)">Longitudinal soil monitoring shows improved organic matter and microbial diversity after two seasons of Soil Restore.</p>
+              <div style="margin-top:8px"><a class="btn btn-primary" href="#">Read methods</a></div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="img" aria-hidden="true"></div>
+            <div>
+              <h3>Integrated Pest Management</h3>
+              <p style="color:var(--muted)">Field trials demonstrate reduced pest incidence and pesticide usage when combined with agronomic practices.</p>
+              <div style="margin-top:8px"><a class="btn btn-primary" href="#">See results</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls" style="left:12px">
+          <button class="btn" id="prev">‹</button>
+        </div>
+        <div class="controls" style="right:12px">
+          <button class="btn" id="next">›</button>
+        </div>
+        <div class="dotwrap" id="dots"></div>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section id="resources">
+      <div style="display:flex; justify-content:space-between; align-items:end">
+        <h2>Resources & Guides</h2>
+        <a href="#blog" style="font-size:14px; color:var(--muted)">See all resources →</a>
+      </div>
+
+      <div class="grid-3" style="margin-top:12px">
+        <div class="card">
+          <h3>Farmer Guide: Best Practices</h3>
+          <p style="color:var(--muted)">Practical steps to implement foliar nutrition and integrated pest management on smallholder farms.</p>
+          <div style="margin-top:12px"><a class="btn btn-ghost" href="#">Download (PDF)</a></div>
+        </div>
+        <div class="card">
+          <h3>R&D Briefs</h3>
+          <p style="color:var(--muted)">Technical papers and methodology docs from our lab and field programs.</p>
+          <div style="margin-top:12px"><a class="btn btn-ghost" href="#">Read more</a></div>
+        </div>
+        <div class="card">
+          <h3>Partner with Us</h3>
+          <p style="color:var(--muted)">Distribution, trial partnerships and research collaborations.</p>
+          <div style="margin-top:12px"><a class="btn btn-ghost" href="#contact">Contact team</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact & Distributor Signup</h2>
+      <p style="color:var(--muted)">Get product samples, schedule a trial, or join our distribution network.</p>
+
+      <div class="contact-grid" style="margin-top:14px">
+        <div>
+          <form onsubmit="event.preventDefault(); alert('Thanks — we received your message (demo). Replace with backend).');">
+            <input type="text" placeholder="Full name" required />
+            <input type="email" placeholder="Email" required />
+            <input type="tel" placeholder="Phone" />
+            <input type="text" placeholder="Company / Farm" />
+            <textarea rows="5" placeholder="Message"></textarea>
+            <button class="btn btn-primary" type="submit">Send message</button>
+          </form>
+        </div>
+
+        <aside class="card" style="background:linear-gradient(180deg,#fff,#F8FFF4);">
+          <h3>Office — India</h3>
+          <p style="color:var(--muted)">Green Leaf Agro Sciences<br/>Plot 12, AgroTech Park<br/>Hyderabad, Telangana</p>
+          <p style="font-weight:700">Email: hello@greenleaf.ag<br/>Phone: +91 98765 43210</p>
+          <div style="margin-top:12px">
+            <a class="btn btn-ghost" href="mailto:hello@greenleaf.ag">Email us</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <strong>Green Leaf Agro Sciences</strong>
+          <p style="margin-top:6px; color:var(--muted)">Cultivating Nature Through Science — sustainable crop solutions and agritech support for farmers and partners.</p>
+        </div>
+        <div style="text-align:right">
+          <div style="margin-bottom:10px">
+            <a href="#" style="display:inline-block; margin-left:8px">Privacy</a>
+            <a href="#" style="display:inline-block; margin-left:8px">Terms</a>
+          </div>
+          <div style="color:var(--muted); font-size:13px">© Green Leaf Agro Sciences | Designed by SHAKTI Design Studio</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const hambtn = document.getElementById('hambtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hambtn.addEventListener('click', () => {
+      const shown = mobileMenu.style.display === 'block';
+      mobileMenu.style.display = shown ? 'none' : 'block';
+    });
+
+    // Simple carousel
+    const slides = document.getElementById('slides');
+    const slideCount = slides.children.length;
+    let index = 0;
+
+    const dots = document.getElementById('dots');
+    for(let i=0;i<slideCount;i++){
+      const d = document.createElement('button');
+      d.className = 'btn';
+      d.style.padding='6px';
+      d.style.borderRadius='100%';
+      d.innerText = '•';
+      d.onclick = () => { go(i); };
+      dots.appendChild(d);
+    }
+
+    function updateDots(){
+      Array.from(dots.children).forEach((b, i) => { b.style.opacity = i===index? '1' : '0.35'; });
+    }
+
+    function go(i){
+      index = (i + slideCount) % slideCount;
+      slides.style.transform = `translateX(-${index*100}%)`;
+      updateDots();
+    }
+
+    document.getElementById('prev').addEventListener('click', () => go(index-1));
+    document.getElementById('next').addEventListener('click', () => go(index+1));
+    updateDots();
+
+    // optional: auto-advance every 6s
+    setInterval(()=> go(index+1), 6000);
+  </script>
+</body>
+</html>
